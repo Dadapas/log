@@ -1,4 +1,6 @@
 .DS_Store
+.phpunit.result.cache
 node_modules
 index.php
 /vendor
+logs
