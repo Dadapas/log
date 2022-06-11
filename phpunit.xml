@@ -14,4 +14,7 @@
             <directory suffix=".php">./src</directory>
         </include>
     </coverage>
+    <php>
+        <ini name="xdebug.max_nesting_level" value="200"/>
+    </php>
 </phpunit>
