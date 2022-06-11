@@ -5,8 +5,7 @@
     "license": "MIT",
     "keywords": [
         "log",
-        "psr",
-        "psr3",
+        "psr"
     ],
     "autoload": {
         "psr-4": {
