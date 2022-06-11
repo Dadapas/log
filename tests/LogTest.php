@@ -28,7 +28,7 @@ final class LogTest extends TestCase
 		try {
 			$this->logger->setPath(dirname(__DIR__, 1) . '/logs');
 		} catch (LogException $e) {
-			
+
 			$this->assertSame('File is not writable', $e->getMessage());
 		}
 	}
@@ -58,7 +58,7 @@ final class LogTest extends TestCase
 	{
 		$logger = $this->logger;
 		try {
-			$logger->log('envalid lavel', 'message for this invalid level' );
+			$logger->log('invalid level', 'message for this invalid level' );
 		} catch (InvalidArgumentException $e) {
 
 			$logger->error($e->getMessage(), $e->getTrace());
