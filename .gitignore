@@ -4,3 +4,4 @@ node_modules
 index.php
 /vendor
 logs
+tests/LogTest.php
