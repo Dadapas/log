@@ -79,3 +79,16 @@ If you want to implement the interface, you can require this package and
 implement `Psr\Log\LoggerInterface` in your code. Please read the
 [specification text](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md)
 for details.
+
+Test
+=====
+
+For making a test just
+
+```bash
+composer test
+```
+License
+=======
+
+The licence is MIT for more details click [here](LICENSE)
