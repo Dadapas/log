@@ -6,7 +6,7 @@
     "keywords": [
         "log",
         "psr",
-        "psr-3",
+        "psr3",
     ],
     "homepage" : "https://google.com",
     "autoload": {
