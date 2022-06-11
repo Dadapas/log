@@ -1,0 +1,41 @@
+{
+    "name": "dadapas/log",
+    "description": "Common libraries implementating psr-3 logging interface",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "log",
+        "psr",
+        "psr-3",
+    ],
+    "homepage" : "https://google.com",
+    "autoload": {
+        "psr-4": {
+            "Dadapas\\Log\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dadapas\\LoggerTests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "TOVOHERY",
+            "email": "tovoherypascal@gmail.com"
+        }
+    ],
+    "provide": {
+        "psr/log": "1.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2",
+        "psr/log": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
+    "version": "1.0.x-dev"
+}
