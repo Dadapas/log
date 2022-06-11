@@ -1,4 +1,4 @@
-Dadapas Log
+dadapas log
 =======
 
 [![Latest Stable Version](http://poser.pugx.org/dadapas/log/v)](https://packagist.org/packages/dadapas/log) [![Total Downloads](http://poser.pugx.org/dadapas/log/downloads)](https://packagist.org/packages/dadapas/log) [![Latest Unstable Version](http://poser.pugx.org/dadapas/log/v/unstable)](https://packagist.org/packages/dadapas/log) [![License](http://poser.pugx.org/dadapas/log/license)](https://packagist.org/packages/dadapas/log) [![PHP Version Require](http://poser.pugx.org/dadapas/log/require/php)](https://packagist.org/packages/dadapas/log)
@@ -21,38 +21,55 @@ If you need a logger, you can use the interface like this:
 ```php
 <?php
 
-use Dadapas\Log\Log as Logger;
+use Dadapas\Log\{FileSystemAdapter, Log as Logger};
 
-class Foo
-{
-    private $logger;
+$localAdapter = new \League\Flysystem\Local\LocalFilesystemAdapter(
+    // Determine log directory
+    __DIR__.'/path/to/logs'
+);
 
-    public function __construct(Logger $logger = null)
-    {
-        $this->logger = $logger;
-        $this->setPath( dirname(__DIR__)."/logs" );
-    }
+// The FilesystemOperator
+$filesystem = new \League\Flysystem\Filesystem($localAdapter);
+$filesysAdapter = new FileSystemAdapter($filesystem);
 
-    public function throwException()
-    {
-        throw new Exception("An exception has thrown.");
-    }
+$logger = new Logger();
+$logger->setAdapter($filesysAdapter);
+```
+To send a logger to an email will be like:
 
-    public function doSomething()
-    {
-        if ($this->logger) {
-            $this->logger->info('Doing work');
-        }
-           
-        try {
-            $this->throwException();
-        } catch (Exception $e) {
+```php
+// ...
+use Dadapas\Log\PHPMailerAdapter;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
-            $this->logger->error($e->getMessage(), $e->getTrace());
-        }
+$mail = new PHPMailer(true);
 
-        // do something useful
-    }
+// $mail->SMTPDebug  = SMTP::DEBUG_SERVER;
+// $mail->isSMTP();
+// $mail->Host       = 'smtp.example.com';
+// $mail->SMTPAuth   = true;
+
+// ...
+$adapter = new PHPMailerAdapter($mail);
+
+// ...
+$logger->setAdapter($adapter);
+```
+
+Make a log to the file
+```php
+// ...
+try {
+    throw new Exception("An exception has been thrown.");
+} catch (Exception $e) {
+
+    // Log to the the error message to file
+    $logger->error($e->getMessage(), $e->getTrace());
+
+} catch (\PHPMailer\PHPMailer\Exception $e) {
+
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 ```
 
