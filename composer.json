@@ -8,7 +8,6 @@
         "psr",
         "psr3",
     ],
-    "homepage" : "https://google.com",
     "autoload": {
         "psr-4": {
             "Dadapas\\Log\\": "src/"
