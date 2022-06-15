@@ -77,9 +77,7 @@ class PHPMailerAdapter extends Context implements AdapterInterface
 		$changedBody = str_replace('{traces}', $strTraces, $changedBody);
 		$changedBody = str_replace('{datetime}', date($format), $changedBody);
 
-		echo $changedBody;
-
 		$this->mail->msgHtml($changedBody);
-		//$this->mail->send();
+		$this->mail->send();
 	}
 }
